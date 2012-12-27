@@ -18,8 +18,16 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
-    # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    diff_sides = len(set([a, b, c]))
+    if diff_sides==1:
+        return 'equilateral'
+    elif diff_sides==2:
+        return 'isosceles'
+    elif diff_sides==3:
+        return 'scalene'
+    else:
+        print 'shouldn\'t be here'
+
 
 
 # Error class used in part 2.  No need to change this code.
