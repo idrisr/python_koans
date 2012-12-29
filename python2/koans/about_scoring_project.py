@@ -35,8 +35,32 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
+    score = 0
 
+    def count_dice(accum, item):
+        accum[item] = accum.get(item, 0) + 1
+        return accum
+
+    dice_count = reduce(count_dice, dice, dict())
+
+    if not dice_count:
+        return score
+
+    for dice, count in dice_count.iteritems():
+        if count >= 3:
+            if dice==1:
+                score += 1000
+            else:
+                score += dice * 100
+            dice_count[dice] -= 3
+
+    for dice, count in dice_count.iteritems():
+        if dice == 1:
+            score += 100 * count
+        elif dice == 5:
+            score += 50 * count
+
+    return score
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
