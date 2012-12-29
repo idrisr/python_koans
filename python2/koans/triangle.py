@@ -18,7 +18,17 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
-    diff_sides = len(set([a, b, c]))
+    sides = [a, b, c]
+    diff_sides = len(set(sides))
+    if not min([a, b, c]) > 0:
+        raise TriangleError
+
+    # get max side and list of smaller sides and take care for equilateral triangles
+    big_side = sides.pop(sides.index(max(sides)))
+
+    if big_side >= sum(sides):
+        raise TriangleError
+
     if diff_sides==1:
         return 'equilateral'
     elif diff_sides==2:
